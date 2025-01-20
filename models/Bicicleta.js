@@ -1,3 +1,108 @@
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Bicicleta:
+ *       type: object
+ *       required:
+ *         - id
+ *         - color
+ *         - modelo
+ *         - ubicacion
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The auto-generated id of the bicycle
+ *         color:
+ *           type: string
+ *           description: The color of the bicycle
+ *         modelo:
+ *           type: string
+ *           description: The model of the bicycle
+ *         ubicacion:
+ *           type: array
+ *           items:
+ *             type: number
+ *           description: The location of the bicycle (latitude and longitude)
+ *       example:
+ *         id: 1
+ *         color: Rojo
+ *         modelo: Trek
+ *         ubicacion: [28.503789, -13.853296]
+ */
+
+/**
+ * @swagger
+ * tags:
+ *   name: Bicicletas
+ *   description: The bicycles managing API
+ * /bicicletas:
+ *   post:
+ *     summary: Create a new bicycle
+ *     tags: [Bicicletas]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Bicicleta'
+ *     responses:
+ *       200:
+ *         description: The created bicycle.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Bicicleta'
+ *       500:
+ *         description: Some server error
+ * /bicicletas/{id}:
+ *   put:
+ *     summary: Update a bicycle by id
+ *     tags: [Bicicletas]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The bicycle id
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Bicicleta'
+ *     responses:
+ *       200:
+ *         description: The updated bicycle.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Bicicleta'
+ *       404:
+ *         description: The bicycle was not found
+ *       500:
+ *         description: Some server error
+ *   delete:
+ *     summary: Delete a bicycle by id
+ *     tags: [Bicicletas]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The bicycle id
+ *     responses:
+ *       200:
+ *         description: The bicycle was deleted
+ *       404:
+ *         description: The bicycle was not found
+ *       500:
+ *         description: Some server error
+ */
+
+
 let Bicicleta = function (id, color, modelo, ubicacion) {
     this.id = id;
     this.color = color;
@@ -32,7 +137,6 @@ Bicicleta.update = function (id, color, modelo, latitud, longitud) {
     }
     return null; // Si no encuentra la bicicleta
 };
-
 
 // Crear bicicletas de ejemplo
 let a = new Bicicleta(1, "Rojo", "Trek", [28.503789, -13.853296]);
