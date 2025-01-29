@@ -3,7 +3,7 @@
  * tags:
  *   name: Bicicletas
  *   description: The bicycles managing API
- * /bicicletas:
+ * /api/bicicletas:
  *   get:
  *     summary: Lists all the bicycles
  *     tags: [Bicicletas]
@@ -34,7 +34,7 @@
  *               $ref: '../../models/Bicicleta'
  *       500:
  *         description: Some server error
- * /bicicletas/{id}:
+ * /api/bicicletas/{id}:
  *   get:
  *     summary: Get the bicycle by id
  *     tags: [Bicicletas]
