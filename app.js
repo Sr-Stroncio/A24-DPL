@@ -8,6 +8,7 @@ var bicicletasAPIRouter = require('./routes/api/bicicletas');
 var swaggerJsdoc = require("swagger-jsdoc");
 var swaggerUi = require("swagger-ui-express");
 const favicon = require('serve-favicon');
+var cors = require('cors');
 
 // Configurations
 var app = express();
@@ -67,6 +68,13 @@ app.use(
   swaggerUi.serve,
   swaggerUi.setup(specs, { explorer: true })
 );
+
+app.use(cors({
+  origin: ['https://sr-stroncio.github.io', 'http://localhost:8080'],
+  methods: '*',
+  allowedHeaders: 'Content-Type,Authorization'
+}));
+
 
 // Error Handling
 app.use(function (req, res, next) {
