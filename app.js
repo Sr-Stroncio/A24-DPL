@@ -70,7 +70,7 @@ app.use(
 );
 
 app.use(cors({
-  origin: ['https://sr-stroncio.github.io', 'http://localhost:8080'],
+  origin: 'http://localhost:8080',
   methods: '*',
   allowedHeaders: 'Content-Type,Authorization'
 }));
