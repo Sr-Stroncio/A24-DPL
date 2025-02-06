@@ -25,7 +25,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use('/api/bicicletas', bicicletasAPIRouter);
-
+app.use(cors({
+  origin: "http://localhost:8080",
+  methods: "GET, PUT, POST",
+  allowedHeaders: "Content-Type,Authorization"
+}));
 
 // Routes
 var indexRouter = require('./routes/index');
@@ -34,13 +38,6 @@ var usersRouter = require('./routes/users');
 // Define the routes for the application
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
-
-app.use(cors({
-  origin: "http://localhost:8080",
-  methods: "GET",
-  allowedHeaders: "Content-Type,Authorization"
-}));
 
 const options = {
   definition: {
