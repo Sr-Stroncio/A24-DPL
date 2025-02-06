@@ -35,6 +35,13 @@ var usersRouter = require('./routes/users');
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+
+app.use(cors({
+  origin: "http://localhost:8080",
+  methods: "GET",
+  allowedHeaders: "Content-Type,Authorization"
+}));
+
 const options = {
   definition: {
     openapi: "3.1.0",
@@ -69,11 +76,6 @@ app.use(
   swaggerUi.setup(specs, { explorer: true })
 );
 
-app.use(cors({
-  origin: 'http://localhost:8080',
-  methods: '*',
-  allowedHeaders: 'Content-Type,Authorization'
-}));
 
 
 // Error Handling
