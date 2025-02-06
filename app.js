@@ -24,12 +24,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use('/api/bicicletas', bicicletasAPIRouter);
 app.use(cors({
   origin: "http://localhost:8080",
   methods: "GET, PUT, POST",
   allowedHeaders: "Content-Type,Authorization"
 }));
+
+app.use('/api/bicicletas', bicicletasAPIRouter);
 
 // Routes
 var indexRouter = require('./routes/index');
